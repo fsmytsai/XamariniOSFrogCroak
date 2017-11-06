@@ -85,9 +85,26 @@
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Page1.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Page1.imageset\page1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180.png" />
+    <ImageAsset Include="Assets.xcassets\Page2.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Page2.imageset\page2.png" />
+    <ImageAsset Include="Assets.xcassets\Page3.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Page4.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Page4.imageset\back.png" />
+    <ImageAsset Include="Assets.xcassets\Page3.imageset\page3.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="ViewControllers\" />
+    <Folder Include="MyDelegates\" />
+    <Folder Include="Assets.xcassets\fff.imageset\" />
+    <Folder Include="Assets.xcassets\Page1.imageset\" />
+    <Folder Include="Assets.xcassets\Page2.imageset\" />
+    <Folder Include="Assets.xcassets\Page3.imageset\" />
+    <Folder Include="Assets.xcassets\Page4.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -100,9 +117,14 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
+    <Compile Include="ViewControllers\IntroViewController.cs" />
+    <Compile Include="ViewControllers\IntroViewController.designer.cs">
+      <DependentUpon>IntroViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyDelegates\IntroScrollViewDelegate.cs" />
+    <Compile Include="ViewControllers\RootViewController.cs" />
+    <Compile Include="ViewControllers\RootViewController.designer.cs">
+      <DependentUpon>RootViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
