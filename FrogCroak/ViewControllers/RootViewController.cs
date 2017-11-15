@@ -1,14 +1,19 @@
 ﻿using System;
-
+using Foundation;
 using UIKit;
 
 namespace FrogCroak.ViewControllers
 {
     public partial class RootViewController : UIViewController
     {
-        UIViewController vc_Intro;
+        private UIViewController vc_Intro;
+        private UIViewController tbc_Home;
 
         public RootViewController() : base("RootViewController", null)
+        {
+        }
+
+        protected RootViewController(IntPtr handle) : base(handle)
         {
         }
 
@@ -16,8 +21,18 @@ namespace FrogCroak.ViewControllers
         {
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
-            vc_Intro = Storyboard.InstantiateViewController("vc_Intro");
-            switchViewController(null, vc_Intro);
+
+            var preferencesRead = NSUserDefaults.StandardUserDefaults;
+            if (preferencesRead.BoolForKey("NeverShowIntro"))
+            {
+                tbc_Home = Storyboard.InstantiateViewController("tbc_Home");
+                switchViewController(null, tbc_Home);
+            }
+            else
+            {
+                vc_Intro = Storyboard.InstantiateViewController("vc_Intro");
+                switchViewController(null, vc_Intro);
+            }
         }
 
         public override void DidReceiveMemoryWarning()
@@ -48,6 +63,13 @@ namespace FrogCroak.ViewControllers
                 toVC.DidMoveToParentViewController(this); // 通知to已经添加到父ViewController
             }
         }
+
+        public void startCroak()
+        {
+            var preferencesWrite = NSUserDefaults.StandardUserDefaults;
+            preferencesWrite.SetBool(true, "NeverShowIntro");
+            tbc_Home = Storyboard.InstantiateViewController("tbc_Home");
+            switchViewController(vc_Intro, tbc_Home);
+        }
     }
 }
-

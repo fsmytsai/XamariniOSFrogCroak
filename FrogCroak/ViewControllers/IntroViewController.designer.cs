@@ -13,9 +13,6 @@ namespace FrogCroak.ViewControllers
 	[Register ("IntroViewController")]
 	partial class IntroViewController
     {
-        public IntroViewController(IntPtr p) : base(p)
-        {
-        }
 		[Outlet]
 		UIKit.UIPageControl pc_Intro { get; set; }
 

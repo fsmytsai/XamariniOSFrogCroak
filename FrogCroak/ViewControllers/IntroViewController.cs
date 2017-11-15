@@ -1,5 +1,4 @@
 ﻿using System;
-using FrogCroak.MyDelegates;
 using UIKit;
 using CoreGraphics;
 
@@ -8,6 +7,10 @@ namespace FrogCroak.ViewControllers
     public partial class IntroViewController : UIViewController
     {
         public IntroViewController() : base("IntroViewController", null)
+        {
+        }
+
+        protected IntroViewController(IntPtr handle) : base(handle)
         {
         }
 
@@ -28,14 +31,11 @@ namespace FrogCroak.ViewControllers
                 {
                     UIButton StartButton = new UIButton(UIButtonType.RoundedRect);
 
-
                     StartButton.SetTitle("開始青蛙呱呱", UIControlState.Normal);
 
                     StartButton.TitleLabel.Font = UIFont.SystemFontOfSize(24);
 
-
                     StartButton.TintColor = UIColor.White;
-
 
                     StartButton.BackgroundColor = UIColor.FromRGB(0.2314f, 0.3176f, 0.0784f);
 
@@ -45,8 +45,9 @@ namespace FrogCroak.ViewControllers
 
                     StartButton.TouchUpInside += (o, s) =>
                     {
-                        Console.WriteLine("button touched");
+                        ((RootViewController)this.ParentViewController).startCroak();
                     };
+
                     var Frame = StartButton.Frame;
                     Frame.Width = View.Frame.Width / 2;
                     Frame.Height = 80;
@@ -55,7 +56,6 @@ namespace FrogCroak.ViewControllers
 
                     StartButton.Center = View.ConvertPointFromView(View.Center, View.Superview);
                 }
-
                 sv_Intro.AddSubview(OneView);
             }
             sv_Intro.PagingEnabled = true;
@@ -74,5 +74,20 @@ namespace FrogCroak.ViewControllers
             sv_Intro.SetContentOffset(offset, true);
         }
     }
-}
 
+    public class IntroScrollViewDelegate : UIScrollViewDelegate
+    {
+        private UIPageControl pc_Intro;
+        public IntroScrollViewDelegate(UIPageControl pc_Intro)
+        {
+            this.pc_Intro = pc_Intro;
+        }
+
+        public override void DecelerationEnded(UIScrollView scrollView)
+        {
+            //base.DecelerationEnded(scrollView);
+            int CurrentPageNum = (int)(Math.Round(scrollView.ContentOffset.X / scrollView.Frame.Width));
+            pc_Intro.CurrentPage = CurrentPageNum;
+        }
+    }
+}

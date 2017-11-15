@@ -81,6 +81,30 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="SQLitePCLRaw.core">
+      <HintPath>..\packages\SQLitePCLRaw.core.1.1.5\lib\Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.provider.sqlite3">
+      <HintPath>..\packages\SQLitePCLRaw.provider.sqlite3.ios_unified.1.1.5\lib\Xamarin.iOS10\SQLitePCLRaw.provider.sqlite3.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_green">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.5\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_green.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.5\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_v2.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite-net">
+      <HintPath>..\packages\sqlite-net-pcl.1.4.118\lib\netstandard1.1\SQLite-net.dll</HintPath>
+    </Reference>
+    <Reference Include="FrogCroakCL">
+      <HintPath>..\..\..\..\Downloads\FrogCroakCL\FrogCroakCL.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\Downloads\FrogCroakCL\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.provider.e_sqlite3">
+      <HintPath>..\..\..\..\Downloads\FrogCroakCL\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -95,16 +119,63 @@
     <ImageAsset Include="Assets.xcassets\Page4.imageset\back.png" />
     <ImageAsset Include="Assets.xcassets\Page3.imageset\page3.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\aistreefrog.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\aistreefrog.imageset\aistreefrog.jpg" />
+    <ImageAsset Include="Resources\Assets.xcassets\audio.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\audio.imageset\audio.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\boostreefrog.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\boostreefrog.imageset\boostreefrog.jpg" />
+    <ImageAsset Include="Resources\Assets.xcassets\facefrog.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\facefrog.imageset\facefrog.jpg" />
+    <ImageAsset Include="Resources\Assets.xcassets\gondesfrog.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\gondesfrog.imageset\gondesfrog.jpg" />
+    <ImageAsset Include="Resources\Assets.xcassets\harpfrog.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\harpfrog.imageset\harpfrog.jpg" />
+    <ImageAsset Include="Resources\Assets.xcassets\ladofrog.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\ladofrog.imageset\ladofrog.jpg" />
+    <ImageAsset Include="Resources\Assets.xcassets\lfrog.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\lfrog.imageset\lfrog.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\lionskinfrog.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\lionskinfrog.imageset\lionskinfrog.jpg" />
+    <ImageAsset Include="Resources\Assets.xcassets\map.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\map.imageset\map.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\message.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\message.imageset\message.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\normal.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\normal.imageset\normal.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\personal.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\personal.imageset\personal.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\rainfrog.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\rainfrog.imageset\rainfrog.jpg" />
+    <ImageAsset Include="Resources\Assets.xcassets\recordbtn.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\recordbtn.imageset\recordbtn.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\recordingbtn.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\recordingbtn.imageset\recordingbtn.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\saveall.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\saveall.imageset\saveall.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\sendi.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\sendi.imageset\sendi.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\sendm.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\sendm.imageset\sendm.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\title.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\title.imageset\title.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\tptreefrog.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\tptreefrog.imageset\tptreefrog.jpg" />
+    <ImageAsset Include="Resources\Assets.xcassets\uploadwav.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\uploadwav.imageset\uploadwav.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\waterfrog.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\waterfrog.imageset\waterfrog.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="ViewControllers\" />
-    <Folder Include="MyDelegates\" />
     <Folder Include="Assets.xcassets\fff.imageset\" />
     <Folder Include="Assets.xcassets\Page1.imageset\" />
     <Folder Include="Assets.xcassets\Page2.imageset\" />
     <Folder Include="Assets.xcassets\Page3.imageset\" />
     <Folder Include="Assets.xcassets\Page4.imageset\" />
+    <Folder Include="MyViews\" />
+    <Folder Include="MyClassLibrary\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -113,6 +184,7 @@
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -121,11 +193,24 @@
     <Compile Include="ViewControllers\IntroViewController.designer.cs">
       <DependentUpon>IntroViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="MyDelegates\IntroScrollViewDelegate.cs" />
     <Compile Include="ViewControllers\RootViewController.cs" />
     <Compile Include="ViewControllers\RootViewController.designer.cs">
       <DependentUpon>RootViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewControllers\MapViewController.cs" />
+    <Compile Include="ViewControllers\MapViewController.designer.cs">
+      <DependentUpon>MapViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\MessageViewController.cs" />
+    <Compile Include="ViewControllers\MessageViewController.designer.cs">
+      <DependentUpon>MessageViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\AudioViewController.cs" />
+    <Compile Include="ViewControllers\AudioViewController.designer.cs">
+      <DependentUpon>AudioViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyViews\PaddingLabel.cs" />
+    <Compile Include="MyClassLibrary\SharedService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

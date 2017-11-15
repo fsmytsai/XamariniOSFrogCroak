@@ -13,9 +13,6 @@ namespace FrogCroak.ViewControllers
 	[Register ("RootViewController")]
 	partial class RootViewController
 	{
-        public RootViewController(IntPtr p) : base(p)
-        {
-        }
 
 		[Outlet]
 		UIKit.UIView containerView { get; set; }
