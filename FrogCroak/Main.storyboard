@@ -215,15 +215,92 @@
                     <view key="view" contentMode="scaleToFill" id="wpv-Fm-9f8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請上傳wav音檔或錄音" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8j8-or-LHK">
+                                <rect key="frame" x="65" y="60" width="246" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ey-Hu-5pz">
+                                <rect key="frame" x="157.5" y="130" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="5ze-Hr-hdt"/>
+                                    <constraint firstAttribute="width" constant="60" id="d3t-se-Vwe"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="recordbtn"/>
+                                <connections>
+                                    <action selector="Record:" destination="YB4-tE-10z" eventType="touchUpInside" id="MiA-an-jAR"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="結果" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ng0-Zq-khT">
+                                <rect key="frame" x="169.5" y="250" width="35" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EAG-gG-Rpr">
+                                <rect key="frame" x="20" y="321" width="335" height="277"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EAG-gG-Rpr" firstAttribute="top" secondItem="ng0-Zq-khT" secondAttribute="bottom" constant="50" id="0f0-vg-HKd"/>
+                            <constraint firstItem="ng0-Zq-khT" firstAttribute="centerX" secondItem="wpv-Fm-9f8" secondAttribute="centerX" id="43V-cG-LfR"/>
+                            <constraint firstItem="8j8-or-LHK" firstAttribute="centerX" secondItem="wpv-Fm-9f8" secondAttribute="centerX" id="6lo-Io-MLF"/>
+                            <constraint firstItem="EAG-gG-Rpr" firstAttribute="leading" secondItem="wpv-Fm-9f8" secondAttribute="leading" constant="20" id="BWq-EJ-LfY"/>
+                            <constraint firstItem="ng0-Zq-khT" firstAttribute="top" secondItem="5ey-Hu-5pz" secondAttribute="bottom" constant="60" id="EcG-rW-k81"/>
+                            <constraint firstItem="5ey-Hu-5pz" firstAttribute="top" secondItem="8j8-or-LHK" secondAttribute="bottom" constant="40" id="Fta-ME-avA"/>
+                            <constraint firstAttribute="trailing" secondItem="EAG-gG-Rpr" secondAttribute="trailing" constant="20" id="XCJ-l0-M6P"/>
+                            <constraint firstItem="8j8-or-LHK" firstAttribute="top" secondItem="cEf-CQ-JOf" secondAttribute="bottom" constant="40" id="cvw-sI-2ZY"/>
+                            <constraint firstItem="5ey-Hu-5pz" firstAttribute="centerX" secondItem="wpv-Fm-9f8" secondAttribute="centerX" id="jVl-bh-ewj"/>
+                            <constraint firstItem="y0b-Wg-bG3" firstAttribute="top" secondItem="EAG-gG-Rpr" secondAttribute="bottom" constant="20" id="yY5-CT-EeB"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="audio" id="Pg8-ZX-nuI">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="iv_ResultFrogImage" destination="EAG-gG-Rpr" id="x2g-yh-xHE"/>
+                        <outlet property="l_Result" destination="ng0-Zq-khT" id="b9F-vE-SdZ"/>
+                        <segue destination="AWT-yF-OG3" kind="popoverPresentation" identifier="showPopover" popoverAnchorView="5ey-Hu-5pz" id="rAE-xh-y1i">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="utl-g3-XbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1966" y="1775"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="7ai-ln-wrr">
+            <objects>
+                <viewController id="AWT-yF-OG3" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mda-8A-itW"/>
+                        <viewControllerLayoutGuide type="bottom" id="fDh-2k-LFh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="O0L-Vc-nC9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="再次點擊停止錄音" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GU0-lx-EJ8">
+                                <rect key="frame" x="106.5" y="321.5" width="163.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GU0-lx-EJ8" firstAttribute="centerY" secondItem="O0L-Vc-nC9" secondAttribute="centerY" id="jpz-ae-IqX"/>
+                            <constraint firstItem="GU0-lx-EJ8" firstAttribute="centerX" secondItem="O0L-Vc-nC9" secondAttribute="centerX" id="kpu-Pa-VSZ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d4g-qi-Rhf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2626" y="2373"/>
         </scene>
         <!--MapViewController-->
         <scene sceneID="tdH-ZV-BQU">
@@ -314,6 +391,7 @@
         <image name="lfrog" width="627" height="617"/>
         <image name="map" width="48" height="48"/>
         <image name="message" width="48" height="48"/>
+        <image name="recordbtn" width="108" height="108"/>
         <image name="sendi" width="108" height="108"/>
         <image name="sendm" width="108" height="108"/>
     </resources>
