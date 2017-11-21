@@ -31,6 +31,7 @@ namespace FrogCroak.ViewControllers
         {
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
+            table_Message.Transform = CGAffineTransform.MakeRotation((nfloat)Math.PI);
             setPushFrameAndTapCloseKB();
             chatMessageTableViewSource = new ChatMessageTableViewSource(View.Frame.Width * 0.7f, table_Message);
             table_Message.Source = chatMessageTableViewSource;
@@ -201,6 +202,7 @@ namespace FrogCroak.ViewControllers
             if (chatMessageList[indexPath.Row].Type == 1)
             {
                 cell = tableView.DequeueReusableCell("MyImage", indexPath);
+                cell.Transform = CGAffineTransform.MakeRotation((nfloat)Math.PI);
 
                 var iv_MyImageView = (UIImageView)cell.ContentView.Subviews[0];
                 iv_MyImageView.TranslatesAutoresizingMaskIntoConstraints = true;
@@ -256,6 +258,7 @@ namespace FrogCroak.ViewControllers
                 cell = tableView.DequeueReusableCell("Left", indexPath);
                 l_Message = (PaddingLabel)cell.ContentView.Subviews[2];
             }
+            cell.Transform = CGAffineTransform.MakeRotation((nfloat)Math.PI);
 
             l_Message.TranslatesAutoresizingMaskIntoConstraints = true;
             l_Message.Text = chatMessageList[indexPath.Row].Message;
