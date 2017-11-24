@@ -261,6 +261,7 @@
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="bt_Record" destination="5ey-Hu-5pz" id="HHW-J8-XjX"/>
                         <outlet property="iv_ResultFrogImage" destination="EAG-gG-Rpr" id="x2g-yh-xHE"/>
                         <outlet property="l_Result" destination="ng0-Zq-khT" id="b9F-vE-SdZ"/>
                         <segue destination="AWT-yF-OG3" kind="popoverPresentation" identifier="showPopover" popoverAnchorView="5ey-Hu-5pz" id="rAE-xh-y1i">
@@ -284,7 +285,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="再次點擊停止錄音" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GU0-lx-EJ8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="點擊外面停止錄音" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GU0-lx-EJ8">
                                 <rect key="frame" x="106.5" y="321.5" width="163.5" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -2,6 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using AVFoundation;
+using CoreFoundation;
 using CoreGraphics;
 using Foundation;
 using FrogCroak.MyClassLibrary;
@@ -38,22 +39,29 @@ namespace FrogCroak.ViewControllers
 
         partial void Record(UIButton sender)
         {
-
-            if (isRecording && audioRecorder != null)
+            if (AVAudioSession.SharedInstance().RecordPermission == AVAudioSessionRecordPermission.Undetermined)
             {
-                audioRecorder.Stop();
-                sender.SetImage(UIImage.FromBundle("recordbtn"), UIControlState.Normal);
-                isRecording = false;
-                var audioSession = AVAudioSession.SharedInstance();
-
-                NSError error = audioSession.SetCategory(AVAudioSessionCategory.Playback);
-                error = audioSession.SetActive(false);
-
-                if (error != null)
-                    Console.WriteLine(error.LocalizedDescription);
-
+                AVAudioSession.SharedInstance().RequestRecordPermission((bool granted) =>
+                {
+                    if (granted)
+                        DispatchQueue.MainQueue.DispatchAsync(() =>
+                        {
+                            StartRecord();
+                        });
+                    else
+                        SharedService.ShowErrorDialog("無法取得錄音權限，請至設定內修改隱私權限", this);
+                });
             }
+            else if (AVAudioSession.SharedInstance().RecordPermission == AVAudioSessionRecordPermission.Granted)
+                StartRecord();
             else
+                SharedService.ShowErrorDialog("無法取得錄音權限，請至設定內修改隱私權限", this);
+
+        }
+
+        private void StartRecord()
+        {
+            if (!isRecording)
             {
                 PerformSegue("showPopover", null);
                 l_Result.Text = "結果";
@@ -89,11 +97,25 @@ namespace FrogCroak.ViewControllers
                     audioRecorder.Delegate = new MyAVAudioRecorderDelegate(this);
                     audioRecorder.PrepareToRecord();
                     audioRecorder.Record();
-                    sender.SetImage(UIImage.FromBundle("recordingbtn"), UIControlState.Normal);
+                    bt_Record.SetImage(UIImage.FromBundle("recordingbtn"), UIControlState.Normal);
                     isRecording = true;
                 }
 
             }
+        }
+
+        public void StopRecord()
+        {
+            audioRecorder.Stop();
+            bt_Record.SetImage(UIImage.FromBundle("recordbtn"), UIControlState.Normal);
+            isRecording = false;
+            var audioSession = AVAudioSession.SharedInstance();
+
+            NSError error = audioSession.SetCategory(AVAudioSessionCategory.Playback);
+            error = audioSession.SetActive(false);
+
+            if (error != null)
+                Console.WriteLine(error.LocalizedDescription);
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, Foundation.NSObject sender)
@@ -108,12 +130,12 @@ namespace FrogCroak.ViewControllers
                 if (controller != null)
                 {
                     controller.BackgroundColor = UIColor.FromRGB(0.2314f, 0.3176f, 0.0784f);
-                    controller.Delegate = new MyUIPopoverPresentationControllerDelegate();
+                    controller.Delegate = new MyUIPopoverPresentationControllerDelegate(this);
                 }
             }
         }
 
-        public async void UploadWavAsync(string AbsolutePath)
+        public async void UploadWav(string AbsolutePath)
         {
 
             AllRequestResult result = null;
@@ -158,22 +180,34 @@ namespace FrogCroak.ViewControllers
 
     class MyUIPopoverPresentationControllerDelegate : UIPopoverPresentationControllerDelegate
     {
+        private AudioViewController ViewController;
+        public MyUIPopoverPresentationControllerDelegate(AudioViewController ViewController)
+        {
+            this.ViewController = ViewController;
+        }
+
         public override UIModalPresentationStyle GetAdaptivePresentationStyle(UIPresentationController forPresentationController)
         {
             return UIModalPresentationStyle.None;
+        }
+
+        public override void DidDismissPopover(UIPopoverPresentationController popoverPresentationController)
+        {
+            ViewController.StopRecord();
         }
     }
 
     class MyAVAudioRecorderDelegate : AVAudioRecorderDelegate
     {
         private AudioViewController ViewController;
-        public MyAVAudioRecorderDelegate(AudioViewController ViewController){
+        public MyAVAudioRecorderDelegate(AudioViewController ViewController)
+        {
             this.ViewController = ViewController;
         }
 
         public override void FinishedRecording(AVAudioRecorder recorder, bool flag)
         {
-            ViewController.UploadWavAsync(recorder.Url.AbsoluteString);
+            ViewController.UploadWav(recorder.Url.AbsoluteString);
         }
     }
 }

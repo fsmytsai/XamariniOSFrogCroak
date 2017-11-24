@@ -13,6 +13,9 @@ namespace FrogCroak.ViewControllers
 	partial class AudioViewController
 	{
 		[Outlet]
+		UIKit.UIButton bt_Record { get; set; }
+
+		[Outlet]
 		UIKit.UIImageView iv_ResultFrogImage { get; set; }
 
 		[Outlet]
@@ -31,6 +34,11 @@ namespace FrogCroak.ViewControllers
 			if (l_Result != null) {
 				l_Result.Dispose ();
 				l_Result = null;
+			}
+
+			if (bt_Record != null) {
+				bt_Record.Dispose ();
+				bt_Record = null;
 			}
 		}
 	}

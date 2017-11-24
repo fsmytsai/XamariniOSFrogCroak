@@ -9,6 +9,8 @@ using CoreGraphics;
 using FrogCroak.MyClassLibrary;
 using System.Threading.Tasks;
 using System.Net;
+using Photos;
+using CoreFoundation;
 
 namespace FrogCroak.ViewControllers
 {
@@ -119,6 +121,28 @@ namespace FrogCroak.ViewControllers
 
         partial void pressSelectImage(UIButton sender)
         {
+            if (PHPhotoLibrary.AuthorizationStatus == PHAuthorizationStatus.NotDetermined)
+            {
+                PHPhotoLibrary.RequestAuthorization((PHAuthorizationStatus status) =>
+                {
+                    
+                    if (status == PHAuthorizationStatus.Authorized)
+                        DispatchQueue.MainQueue.DispatchAsync(() =>
+                        {
+                            OpenImagePickerController();
+                        });
+                    else
+                        SharedService.ShowErrorDialog("無權限開啟相簿，請至設定內修改隱私權限", this);
+                });
+            }
+            else if (PHPhotoLibrary.AuthorizationStatus == PHAuthorizationStatus.Authorized)
+                OpenImagePickerController();
+            else
+                SharedService.ShowErrorDialog("無權限開啟相簿，請至設定內修改隱私權限", this);
+        }
+
+        private void OpenImagePickerController()
+        {
             var ImagePicker = new UIImagePickerController();
             ImagePicker.SourceType = UIImagePickerControllerSourceType.PhotoLibrary;
             ImagePicker.FinishedPickingMedia += (mSender, e) =>
@@ -162,9 +186,7 @@ namespace FrogCroak.ViewControllers
             };
 
             PresentViewController(ImagePicker, true, null);
-            //NavigationController.PresentModalViewController(ImagePicker, true);
         }
-
     }
 
     public class ChatMessageTableViewSource : UITableViewSource
